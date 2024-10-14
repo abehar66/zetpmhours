@@ -30,7 +30,7 @@
           <HBox alignItems="Center" id="WorklistBox4"> 
            <Label text="Taller: " labelFor="IdTaller" visible="true" />
            <ComboBox
-                    required="true"
+                    required="true" 
                     id="IdTaller"                                    
                     width="200px"                                      
                     items="{
