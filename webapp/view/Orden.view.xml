@@ -1,0 +1,105 @@
+<mvc:View 
+  id="OrdenView"  
+  controllerName="zetpmhours.controller.Worklist"  
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core" 
+  xmlns:m="sap.m" 
+  xmlns:l="sap.ui.layout" >  
+  <f:SimpleForm		
+		id="OrdenForm"
+		columnsL="3"
+		columnsM="3"
+		editable="true"
+		layout="ResponsiveGridLayout">		
+		<f:content>	
+             <Table
+                id="tableOrder"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/WorkPerformedSet',
+                    sorter: {
+                        path: 'Aufnr',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="headerflowOrden">
+                        <Title
+                            id="tableHeader"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpacerOrden" />
+                        
+                        <SearchField
+                            id="searchField"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                     id="headerflowDataOrden"
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                         
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="nameColumn1">
+                        <Text text="{i18n>tableColumnOrdenTitle}" id="col1"/>
+                    </Column>  
+                    <Column id="nameColumn2">
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="col2" width="40%"/>
+                    </Column>                    
+                    <Column id="nameColumn3">
+                        <Text text="{i18n>tableColumnEqunrTitle}" id="col3" width="40%"/>
+                    </Column>                    
+                    <Column id="nameColumn4">
+                        <Text text="{i18n>tableColumnEstadoTitle}" id="col4" width="40%"/>
+                    </Column>                    
+                    <Column id="nameColumn5">
+                        <Text text="{i18n>tableColumnRepairedTitle}" id="col5" width="60%"/>
+                    </Column>                    
+                    <Column id="nameColumn6">
+                        <Text text="{i18n>tableColumnNoRepairedTitle}" id="col6" width="60%"/>
+                    </Column>                    
+                    <Column id="nameColumn7">
+                        <Text text="{i18n>tableColumnTimeAgreededTitle}" id="col7" width="61%"/>
+                    </Column>                    
+                    <Column id="nameColumn8">
+                        <Text text="{i18n>tableColumnTimeWorkedTitle}" id="col8" width="25%"/>
+                    </Column>                    
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItem1"
+                        type="Navigation"
+                        press=".onPress">
+                        <cells>
+                          <Text id="_IDGenText1" text="{ReportModel>Aufnr}"/>                                                        
+                        </cells>
+                       
+                        <Text id="_IDGenText2" text="{ReportModel>Workcenterdescr}"/>
+                        <Text id="_IDGenText3" text="{ReportModel>Equnrtxt}"/>
+                        <Text id="_IDGenText4" text="{ReportModel>Estadoordendescr}"/>
+                        <Text id="_IDGenText5" text="{ReportModel>Repairedquantity}"/>
+                        <Text id="_IDGenText6" text="{ReportModel>Norepairedquantity}"/>
+                        <Text id="_IDGenText7" text="{ReportModel>Timeagreeded}"/>
+                        <Text id="_IDGenText8" text="{ReportModel>Timeworked}"/>
+                       
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:SimpleForm>	
+</mvc:View> 

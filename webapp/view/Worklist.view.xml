@@ -1,0 +1,98 @@
+<mvc:View
+    controllerName="zetpmhours.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"    
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic">
+
+   <semantic:SemanticPage
+        id="page1"
+        headerPinnable="false" 
+        toggleHeaderOnTitleClick="false">
+
+    <semantic:titleHeading>
+      <Title id="Title1"
+             text="{i18n>worklistTitle}"
+             level="H2"/>
+     </semantic:titleHeading>   
+
+     <semantic:titleCustomTextActions>
+            <Button id="IdBtnMostrar" icon="sap-icon://kpi-corporate-performance" 
+                                 tooltip="Mostrar Reportes" 
+                                 text="{i18n>buttonDisplay}" 
+                                 type="Accept"
+                                 press="onDisplay" visible="true" />                             
+      </semantic:titleCustomTextActions> 
+
+      <semantic:headerContent>
+         <VBox alignItems="Center"  id="WorklistBox1">
+
+          <HBox alignItems="Center" id="WorklistBox4"> 
+           <Label text="Taller: " labelFor="IdTaller" visible="true" />
+           <ComboBox
+                    required="true"
+                    id="IdTaller"                                    
+                    width="200px"                                      
+                    items="{
+                            path: 'ReportModel>/Taller',
+                            sorter: { path: 'Key' }
+                           }"  >
+                     <core:Item key="{ReportModel>Key}" text="{ReportModel>Value}" />                         
+            </ComboBox>  
+          </HBox>  
+
+         <HBox alignItems="Center" id="WorklistBox2">
+            <Label id="WorkListLabel" text="Desde: " labelFor="Desde" visible="true" />
+            <DatePicker	id="Desde"			                	
+                            value="{path: 'ReportModel>/Parameters/Desde', type:'sap.ui.model.type.Date' ,
+                                    formatOptions: { style: 'medium', strictParsing: true}   }"  
+                            displayFormat="medium"                                                     
+                            valueFormat="dd-mm-yyyy"
+			                change="handleChange"                            
+			                visible="true" />                             
+           </HBox>                   
+          <HBox alignItems="Center" id="WorklistBox3">     
+           <Label text="Hasta: " labelFor="Hasta" visible="true"/>
+            <DatePicker	id="Hasta"
+			                value="{path: 'ReportModel>/Parameters/Hasta', type:'sap.ui.model.type.Date' ,
+                                    formatOptions: { style: 'medium', strictParsing: true}   }"  
+                            displayFormat="medium"                                                     
+                            valueFormat="dd-mm-yyyy"
+			                change="handleChange"
+			                visible="true"/> 
+                          
+           </HBox>
+          
+         </VBox> 
+       </semantic:headerContent> 
+
+    <semantic:content>     
+     <IconTabBar
+				id="iconTabBar"
+				headerBackgroundDesign="Transparent"
+				class="sapUiResponsiveContentPadding"
+				binding="{ReportModel}"
+				select=""
+				selectedKey="">				
+                <items>
+                    <IconTabFilter id="OrderTab" text="Ordenes PM" key="key1">
+						<mvc:XMLView id="OrdenView1" viewName="zetpmhours.view.Orden"></mvc:XMLView>
+					</IconTabFilter>						
+
+                    <IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2">
+						<mvc:XMLView id="PuestoView1" viewName="zetpmhours.view.Puesto"></mvc:XMLView>
+					</IconTabFilter>	
+
+                    <IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3">
+						<mvc:XMLView id="PersonalView1" viewName="zetpmhours.view.Personal"></mvc:XMLView>
+					</IconTabFilter>                 					
+                    						
+                </items>                
+			</IconTabBar> 
+   </semantic:content>     
+   <semantic:sendEmailAction>
+       <semantic:SendEmailAction id="shareEmail1" press=".onShareEmailPress"/>
+     </semantic:sendEmailAction> 
+   </semantic:SemanticPage>     
+    
+</mvc:View>

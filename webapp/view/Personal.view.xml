@@ -1,0 +1,85 @@
+<mvc:View 
+  id="PersonalView"  
+  controllerName="zetpmhours.controller.Worklist"  
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core" 
+  xmlns:m="sap.m" 
+  xmlns:l="sap.ui.layout" >  
+  <f:SimpleForm		
+		id="PersonalForm"
+		columnsL="3"
+		columnsM="3"
+		editable="true"
+		layout="ResponsiveGridLayout">		
+		<f:content>	
+             <Table
+                id="tablePersonal"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/PersonalSet',
+                    sorter: {
+                        path: 'Workcenter',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar  id="headerflowPersoanl" >
+                        <Title
+                            id="tableHeaderPersonal"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpaceOrden"/>
+                        
+                        <SearchField
+                            id="searchFieldPersonal"
+                            tooltip="{i18n>worklistSearchTooltip}"
+                            search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData
+                                    id="headerLayoutOrden"
+                                    maxWidth="200px"
+                                    priority="NeverOverflow"/>
+                            </layoutData>
+                        </SearchField>
+                         
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="PersonalnameColumn1">
+                        <Text text="{i18n>tableColumnWorkcenterTitle}" id="Personalcol1"/>
+                    </Column>                      
+                    <Column id="PersonalameColumn2">
+                        <Text text="{i18n>tableColumnPersonalTitle}" id="Personalcol2" width="35%"/>
+                    </Column>                      
+                    <Column id="PersonalnameColumn3">
+                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Personalcol3" width="35%"/>
+                    </Column>                                        
+                    <Column id="PersonalnameColumn4">
+                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="Personalcol4" width="35%"/>
+                    </Column>                    
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItemPersonal"
+                        type="Navigation"
+                        press=".onPress">                                              
+                        <Text id="_IDGenPersonalText1" text="{ReportModel>Workcenterdescr}"/>
+                        <Text id="_IDGenPersonalText2" text="{ReportModel>Pernr}"/>
+                        <Text id="_IDGenPersonalText3" text="{ReportModel>Timeagreeded}"/>                        
+                        <Text id="_IDGenPersonalText4" text="{ReportModel>Timeaverage}"/>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:SimpleForm>	
+</mvc:View> 
