@@ -222,7 +222,7 @@ sap.ui.define([
             });
 
             this.reportModel.setProperty("/WorkcenterSet", result);
-            WorkcenterTable.getBinding("items").getModel().setProperty("/WorkcenterSet", result);
+            WorkcenterTable.getBinding("items").getModel().setProperty("/WorkcenterSet", result); 
         },
 
         fillPersonalSet: function (tabla) {
