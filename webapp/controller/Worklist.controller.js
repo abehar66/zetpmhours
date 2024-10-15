@@ -165,13 +165,14 @@ sap.ui.define([
             const tableOrder = this.byId("OrdenView1--tableOrder");
             const desde = this.reportModel.getProperty('/Parameters/Desde');
             const hasta = this.reportModel.getProperty('/Parameters/Hasta');
+            const taller = this.getView().byId('IdTaller').getSelectedKey();
             
             var dateFormat = sap.ui.core.format.DateFormat.getInstance({ UTC: true, pattern: "yyyyMMdd" });
             var ini = dateFormat.format(desde);
             var fin = dateFormat.format(hasta);            
 
             tableOrder.setBusy(true);
-            oDataModel.getListOrden('1',ini,fin)
+            oDataModel.getListOrden(taller,ini,fin)
                 .then(oData => {
                     this.reportModel.setProperty('/WorkPerformedSet', oData.results);
                     tableOrder.getBinding("items").getModel().setProperty("/WorkPerformedSet", oData.results);
