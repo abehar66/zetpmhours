@@ -126,16 +126,16 @@
                     <Column id="nameColumn4">
                         <Text text="{i18n>tableColumnEstadoTitle}" id="col4" width="40%"/>
                     </Column>                    
-                    <Column id="nameColumn5">
+                    <Column id="nameColumn5" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnRepairedTitle}" id="col5" width="60%"/>
                     </Column>                    
-                    <Column id="nameColumn6">
+                    <Column id="nameColumn6" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnNoRepairedTitle}" id="col6" width="60%"/>
                     </Column>                    
-                    <Column id="nameColumn7">
+                    <Column id="nameColumn7" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnTimeAgreededTitle}" id="col7" width="61%"/>
                     </Column>                    
-                    <Column id="nameColumn8">
+                    <Column id="nameColumn8" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnTimeWorkedTitle}" id="col8" width="25%"/>
                     </Column>                    
                 </columns>

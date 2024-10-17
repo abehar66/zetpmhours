@@ -57,10 +57,10 @@
                     <Column id="PuestonameColumn1">
                         <Text text="{i18n>tableColumnWorkcenterTitle}" id="Puestocol1"/>
                     </Column>                      
-                    <Column id="PuestonameColumn2">
+                    <Column id="PuestonameColumn2" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Puestocol2" width="30%"/>
                     </Column>                                        
-                    <Column id="PuestonameColumn4">
+                    <Column id="PuestonameColumn4" vAlign="Middle" hAlign="Center">
                         <Text text="{i18n>tableColumnTimeAverageTitle}" id="Puestocol4" width="30%"/>
                     </Column>                    
                 </columns>
