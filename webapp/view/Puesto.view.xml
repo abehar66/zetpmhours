@@ -71,8 +71,8 @@
                         type="Navigation"
                         press=".onPress">                                              
                         <Text id="_IDGenPuestoText1" text="{ReportModel>Workcenterdescr}"/>
-                        <Text id="_IDGenPuestoText2" text="{ReportModel>Timeagreeded}"/>                        
-                        <Text id="_IDGenPuestoText4" text="{ReportModel>Timeaverage}"/>
+                        <Text id="_IDGenPuestoText2" text="{ReportModel>Timeagreeded} H"/>                        
+                        <Text id="_IDGenPuestoText4" text="{ReportModel>Timeaverage} H"/>
                     </ColumnListItem>
                 </items>
             </Table>

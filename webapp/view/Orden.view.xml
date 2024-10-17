@@ -30,7 +30,7 @@
                 busyIndicatorDelay="{worklistView>/tableBusyDelay}"
                 growing="true"
                 growingScrollToLoad="true"
-                updateFinished=".onUpdateFinished">
+                >
 
                 <headerToolbar>
                     <OverflowToolbar id="headerflowOrdenGrp">
@@ -69,8 +69,8 @@
                         <Text id="_IDGenTextGrp1" text="{ReportModel>Totalquantity}"/>                        
                         <Text id="_IDGenTextGrp2" text="{ReportModel>Repairedquantity}"/>
                         <Text id="_IDGenTextGrp3" text="{ReportModel>Norepairedquantity}"/>
-                        <Text id="_IDGenTextGrp4" text="{ReportModel>Timeagreeded}"/>
-                        <Text id="_IDGenTextGrp5" text="{ReportModel>Timeworked}"/>
+                        <Text id="_IDGenTextGrp4" text="{ReportModel>Timeagreeded} H"/>
+                        <Text id="_IDGenTextGrp5" text="{ReportModel>Timeworked} H"/>
                        
                     </ColumnListItem>
                 </items>
@@ -92,7 +92,7 @@
                 busyIndicatorDelay="{worklistView>/tableBusyDelay}"
                 growing="true"
                 growingScrollToLoad="true"
-                updateFinished=".onUpdateFinished">
+                updateFinished=".onUpdateFinished">                
 
                 <headerToolbar>
                     <OverflowToolbar id="headerflowOrden">                                          
@@ -154,8 +154,8 @@
                         <Text id="_IDGenTextOrder4" text="{ReportModel>Estadoordendescr}"/>
                         <Text id="_IDGenTextOrder5" text="{ReportModel>Repairedquantity}"/>
                         <Text id="_IDGenTextOrder6" text="{ReportModel>Norepairedquantity}"/>
-                        <Text id="_IDGenTextOrder7" text="{ReportModel>Timeagreeded}"/>
-                        <Text id="_IDGenTextOrder8" text="{ReportModel>Timeworked}"/>
+                        <Text id="_IDGenTextOrder7" text="{ReportModel>Timeagreeded} H"/>
+                        <Text id="_IDGenTextOrder8" text="{ReportModel>Timeworked} H"/>
                        
                     </ColumnListItem>
                 </items>

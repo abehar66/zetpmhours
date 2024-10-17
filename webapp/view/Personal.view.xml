@@ -79,8 +79,8 @@
                         <Text id="_IDGenPersonalText1" text="{ReportModel>Workcenterdescr}"/>
                         <Text id="_IDGenPersonalText2" text="{ReportModel>Pernr}"/>
                         <Text id="_IDGenPersonalText5" text="{ReportModel>Pernrname}"/>
-                        <Text id="_IDGenPersonalText3" text="{ReportModel>Timeagreeded}"/>                        
-                        <Text id="_IDGenPersonalText4" text="{ReportModel>Timeaverage}"/>
+                        <Text id="_IDGenPersonalText3" text="{ReportModel>Timeagreeded} H"/>                        
+                        <Text id="_IDGenPersonalText4" text="{ReportModel>Timeaverage} H"/>
                     </ColumnListItem>
                 </items>
             </Table>
