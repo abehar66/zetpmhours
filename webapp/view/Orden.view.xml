@@ -14,6 +14,70 @@
 		editable="true"
 		layout="ResponsiveGridLayout">		
 		<f:content>	
+            <VBox alignItems="Center"  id="OrderVBox">
+            <HBox alignItems="Center" id="OrderHBox1"> 
+             <Table
+                id="tableOrderGrp"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/OrderGrpSet',
+                    sorter: {
+                        path: 'Aufnr',
+                        descending: false
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar id="headerflowOrdenGrp">
+                        <Title
+                            id="tableHeaderGrp"
+                            text="{worklistView>/worklistTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpacerOrdenGrp" />                       
+                        
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>                    
+                    <Column id="nameColumnRes1">
+                        <Text text="{i18n>tableColumnTotalTitle}" id="colRes1" width="60%"/>
+                    </Column>                    
+                    <Column id="nameColumnRes2">
+                        <Text text="{i18n>tableColumnRepairedTitle}" id="colRes2" width="60%"/>
+                    </Column>                    
+                    <Column id="nameColumnRes3">
+                        <Text text="{i18n>tableColumnNoRepairedTitle}" id="colRes3" width="60%"/>
+                    </Column>                    
+                    <Column id="nameColumnRes4">
+                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="colRes4" width="50%"/>
+                    </Column>                                        
+                    <Column id="nameColumnRes5">
+                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="colRes5" width="50%"/>
+                    </Column>                                        
+                </columns>
+
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItemGrp"
+                        type="Navigation"
+                        press=".onPress">                                              
+                        <Text id="_IDGenTextGrp1" text="{ReportModel>Totalquantity}"/>                        
+                        <Text id="_IDGenTextGrp2" text="{ReportModel>Repairedquantity}"/>
+                        <Text id="_IDGenTextGrp3" text="{ReportModel>Norepairedquantity}"/>
+                        <Text id="_IDGenTextGrp4" text="{ReportModel>Timeagreeded}"/>
+                        <Text id="_IDGenTextGrp5" text="{ReportModel>Timeworked}"/>
+                       
+                    </ColumnListItem>
+                </items>
+            </Table>
+           </HBox> 
+
+           <HBox alignItems="Center" id="OrderHBox2"> 
              <Table
                 id="tableOrder"
                 width="auto"
@@ -31,11 +95,7 @@
                 updateFinished=".onUpdateFinished">
 
                 <headerToolbar>
-                    <OverflowToolbar id="headerflowOrden">
-                        <Title
-                            id="tableHeader"
-                            text="{worklistView>/worklistTableTitle}"
-                            level="H3"/>
+                    <OverflowToolbar id="headerflowOrden">                                          
                         <ToolbarSpacer id="headerSpacerOrden" />
                         
                         <SearchField
@@ -82,24 +142,26 @@
 
                 <items>
                     <ColumnListItem
-                        id="_IDGenColumnListItem1"
+                        id="_IDGenColumnListItemOrder"
                         type="Navigation"
                         press=".onPress">
                         <cells>
-                          <Text id="_IDGenText1" text="{ReportModel>Aufnr}"/>                                                        
+                          <Text id="_IDGenTextOrder1" text="{ReportModel>Aufnr}"/>                                                        
                         </cells>
                        
-                        <Text id="_IDGenText2" text="{ReportModel>Workcenterdescr}"/>
-                        <Text id="_IDGenText3" text="{ReportModel>Equnrtxt}"/>
-                        <Text id="_IDGenText4" text="{ReportModel>Estadoordendescr}"/>
-                        <Text id="_IDGenText5" text="{ReportModel>Repairedquantity}"/>
-                        <Text id="_IDGenText6" text="{ReportModel>Norepairedquantity}"/>
-                        <Text id="_IDGenText7" text="{ReportModel>Timeagreeded}"/>
-                        <Text id="_IDGenText8" text="{ReportModel>Timeworked}"/>
+                        <Text id="_IDGenTextOrder2" text="{ReportModel>Workcenterdescr}"/>
+                        <Text id="_IDGenTextOrder3" text="{ReportModel>Equnrtxt}"/>
+                        <Text id="_IDGenTextOrder4" text="{ReportModel>Estadoordendescr}"/>
+                        <Text id="_IDGenTextOrder5" text="{ReportModel>Repairedquantity}"/>
+                        <Text id="_IDGenTextOrder6" text="{ReportModel>Norepairedquantity}"/>
+                        <Text id="_IDGenTextOrder7" text="{ReportModel>Timeagreeded}"/>
+                        <Text id="_IDGenTextOrder8" text="{ReportModel>Timeworked}"/>
                        
                     </ColumnListItem>
                 </items>
             </Table>
+           </HBox> 
+           </VBox>  
         </f:content>
     </f:SimpleForm>	
 </mvc:View> 

@@ -38,6 +38,7 @@ sap.ui.define([
             this.reportModel = new JSONModel(
                 {
                     'WorkPerformedSet': [],
+                    'OrderGrpSet': [],
                     'WorkcenterSet': [],
                     'PersonalSet': [],
                     'Parameters' : {
@@ -178,6 +179,7 @@ sap.ui.define([
                     tableOrder.getBinding("items").getModel().setProperty("/WorkPerformedSet", oData.results);
                     this.fillWorkcenterSet(oData.results);
                     this.fillPersonalSet(oData.results);
+                    this.fillOrderGrpSet(oData.results);
                     tableOrder.setBusy(false);
                 })
                 .catch(e => {
@@ -241,6 +243,7 @@ sap.ui.define([
                             Workcenter: e.Workcenter,
                             Workcenterdescr: e.Workcenterdescr,
                             Pernr : e.Pernr,
+                            Pernrname : e.Pernrname,
                             Timeagreeded: Number.parseFloat(e.Timeagreeded),
                             Timeworked: Number.parseFloat(e.Timeworked),
                             Cant: 1,
@@ -269,6 +272,52 @@ sap.ui.define([
             this.reportModel.setProperty("/PersonalSet", result);
             PersonalTable.getBinding("items").getModel().setProperty("/PersonalSet", result);
         },
+
+        fillOrderGrpSet: function (tabla) {
+            const TableGrp = this.byId("OrdenView1--tableOrderGrp");
+            let result = [];
+            var rec;
+
+            tabla.forEach(e => {                
+
+                if (result.length === 0 ) {
+                    const oNew = {                    
+                        Totalquantity : 1,     
+                        Repairedquantity: Number.parseFloat(e.Repairedquantity),                   
+                        Norepairedquantity: Number.parseFloat(e.Norepairedquantity), 
+                        Timeagreeded: Number.parseFloat(e.Timeagreeded),
+                        Timeworked: Number.parseFloat(e.Timeworked),                                                
+                    };
+
+                    result.push(oNew);                      
+                 }    
+                else  {
+                    rec = result[ 0 ];
+                    rec.Totalquantity += 1;
+                    rec.Repairedquantity += Number.parseFloat(e.Repairedquantity);               
+                    rec.Norepairedquantity += Number.parseFloat(e.Norepairedquantity); 
+                    rec.Timeworked += Number.parseFloat(e.Timeworked);
+                    rec.Timeagreeded += Number.parseFloat(e.Timeagreeded); 
+                }    
+
+                
+            });
+
+            if (result.length !== 0){
+                rec = result[ 0 ];
+
+                rec.Timeworked = rec.Timeworked / rec.Totalquantity;
+                rec.Timeworked = rec.Timeworked.toFixed(1);
+
+                rec.Timeagreeded = rec.Timeagreeded / rec.Totalquantity;
+                rec.Timeagreeded = rec.Timeagreeded.toFixed(1);
+
+            }                 
+
+            this.reportModel.setProperty("/OrderGrpSet", result);
+            TableGrp.getBinding("items").getModel().setProperty("/OrderGrpSet", result);
+        },
+
 
         loadTaller: function () {
             oDataModel.getListMaestro('TALLER')

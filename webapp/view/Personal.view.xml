@@ -54,17 +54,20 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column id="PersonalnameColumn1">
+                    <Column id="PersonalColumn1">
                         <Text text="{i18n>tableColumnWorkcenterTitle}" id="Personalcol1"/>
                     </Column>                      
-                    <Column id="PersonalameColumn2">
+                    <Column id="PersonalColumn2">
                         <Text text="{i18n>tableColumnPersonalTitle}" id="Personalcol2" width="35%"/>
                     </Column>                      
-                    <Column id="PersonalnameColumn3">
-                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Personalcol3" width="35%"/>
+                    <Column id="PersonalNameColumn5">
+                        <Text text="{i18n>tableColumnPersonalNameTitle}" id="Personalcol5" width="40%"/>
+                    </Column>                      
+                    <Column id="PersonalColumn3">
+                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Personalcol3" width="50%"/>
                     </Column>                                        
-                    <Column id="PersonalnameColumn4">
-                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="Personalcol4" width="35%"/>
+                    <Column id="PersonalColumn4">
+                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="Personalcol4" width="50%"/>
                     </Column>                    
                 </columns>
 
@@ -75,6 +78,7 @@
                         press=".onPress">                                              
                         <Text id="_IDGenPersonalText1" text="{ReportModel>Workcenterdescr}"/>
                         <Text id="_IDGenPersonalText2" text="{ReportModel>Pernr}"/>
+                        <Text id="_IDGenPersonalText5" text="{ReportModel>Pernrname}"/>
                         <Text id="_IDGenPersonalText3" text="{ReportModel>Timeagreeded}"/>                        
                         <Text id="_IDGenPersonalText4" text="{ReportModel>Timeaverage}"/>
                     </ColumnListItem>
