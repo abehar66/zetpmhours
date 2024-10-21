@@ -326,8 +326,7 @@ sap.ui.define([
 
             this.reportModel.setProperty("/OrderGrpSet", tOrder);
             TableGrp.getBinding("items").getModel().setProperty("/OrderGrpSet", tOrder);
-        },
-
+        }, 
 
         loadTaller: function () {
             oDataModel.getListMaestro('TALLER')
