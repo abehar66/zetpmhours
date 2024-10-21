@@ -275,47 +275,57 @@ sap.ui.define([
 
         fillOrderGrpSet: function (tabla) {
             const TableGrp = this.byId("OrdenView1--tableOrderGrp");
-            let result = [];
-            var rec;
+            let result = [];            
+            let tOrder = [];
+            
 
             tabla.forEach(e => {                
+                let rec = result.find(d => d.Aufnr === e.Aufnr);
 
-                if (result.length === 0 ) {
+                if (rec === undefined) {
                     const oNew = {                    
+                        Aufnr: e.Aufnr,
                         Totalquantity : 1,     
                         Repairedquantity: Number.parseFloat(e.Repairedquantity),                   
                         Norepairedquantity: Number.parseFloat(e.Norepairedquantity), 
                         Timeagreeded: Number.parseFloat(e.Timeagreeded),
                         Timeworked: Number.parseFloat(e.Timeworked),                                                
-                    };
+                    };  
 
-                    result.push(oNew);                      
-                 }    
-                else  {
-                    rec = result[ 0 ];
-                    rec.Totalquantity += 1;
-                    rec.Repairedquantity += Number.parseFloat(e.Repairedquantity);               
-                    rec.Norepairedquantity += Number.parseFloat(e.Norepairedquantity); 
-                    rec.Timeworked += Number.parseFloat(e.Timeworked);
-                    rec.Timeagreeded += Number.parseFloat(e.Timeagreeded); 
-                }    
+                    result.push(oNew);                    
+                }
+                else {                     
+                        rec.Timeworked += Number.parseFloat(e.Timeworked);
+                        rec.Timeagreeded += Number.parseFloat(e.Timeagreeded);                                                                   
+                }  
+            });     
 
-                
+            const Order = {                                    
+                Totalquantity : 0,     
+                Repairedquantity: 0,
+                Norepairedquantity: 0,
+                Timeagreeded: 0,
+                Timeworked: 0,
+            };  
+
+            result.forEach(e => {
+                Order.Totalquantity += e.Totalquantity;
+                Order.Timeworked += Number.parseFloat(e.Timeworked);
+                Order.Timeagreeded += Number.parseFloat(e.Timeagreeded);               
+                Order.Repairedquantity += Number.parseFloat(e.Repairedquantity);
+                Order.Norepairedquantity += Number.parseFloat(e.Norepairedquantity);
             });
 
-            if (result.length !== 0){
-                rec = result[ 0 ];
+            Order.Timeworked = Order.Timeworked / Order.Totalquantity;
+            Order.Timeworked = Order.Timeworked.toFixed(1);
 
-                rec.Timeworked = rec.Timeworked / rec.Totalquantity;
-                rec.Timeworked = rec.Timeworked.toFixed(1);
+            Order.Timeagreeded = Order.Timeagreeded / Order.Totalquantity;
+            Order.Timeagreeded = Order.Timeagreeded.toFixed(1);               
 
-                rec.Timeagreeded = rec.Timeagreeded / rec.Totalquantity;
-                rec.Timeagreeded = rec.Timeagreeded.toFixed(1);
+            tOrder.push(Order);                       
 
-            }                 
-
-            this.reportModel.setProperty("/OrderGrpSet", result);
-            TableGrp.getBinding("items").getModel().setProperty("/OrderGrpSet", result);
+            this.reportModel.setProperty("/OrderGrpSet", tOrder);
+            TableGrp.getBinding("items").getModel().setProperty("/OrderGrpSet", tOrder);
         },
 
 
