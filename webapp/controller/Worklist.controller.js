@@ -45,10 +45,7 @@ sap.ui.define([
                                     'Desde': new Date(),
                                     'Hasta': new Date(),
                                    },
-                    'Taller': [],
-                    Vis1:false,
-                    Vis2:false,
-                    Vis3:false,      
+                    'Taller': []               
                 });
 
             this.setModel(this.reportModel, "ReportModel");
@@ -347,36 +344,50 @@ sap.ui.define([
 
                 })
         },
-        onCollapseExpandPress: function () {
-            var oSideNavigation = this.byId("sideNavigation");
-            var bExpanded = oSideNavigation.getExpanded();
-         
-            oSideNavigation.setExpanded(!bExpanded);
-           },
-         
-           onHideShowSubItemPress: function () {
-            var oNavListItem = this.byId("subItem3");
-            oNavListItem.setVisible(!oNavListItem.getVisible());
-           },
-        onPressNav1:function(){
-            this.reportModel.setProperty('/Vis1',true);
-            this.reportModel.setProperty('/Vis2',false);
-            this.reportModel.setProperty('/Vis3',false);
-        },
-        onPressNav2:function(){
-            this.reportModel.setProperty('/Vis1',false);
-            this.reportModel.setProperty('/Vis2',true);
-            this.reportModel.setProperty('/Vis3',false);
-        },
-        onPressNav3:function(){
-            this.reportModel.setProperty('/Vis1',false);
-            this.reportModel.setProperty('/Vis2',false);
-            this.reportModel.setProperty('/Vis3',true);
-        },
-        onPressNavTotGroup1:function(){
-            this.reportModel.setProperty('/Vis1',true);
-            this.reportModel.setProperty('/Vis2',true);
-            this.reportModel.setProperty('/Vis3',true);
-        }
+        onExit: function () {
+			Device.orientation.detachHandler(this.onOrientationChange, this);
+		},
+
+		onOrientationChange: function (mParams) {
+			var sMsg = "Orientation now is: " + (mParams.landscape ? "Landscape" : "Portrait");
+			MessageToast.show(sMsg, { duration: 5000 });
+		},
+
+		onPressNavToDetail: function () {
+			this.getSplitAppObj().to(this.createId("detailDetail"));
+		},
+
+		onPressDetailBack: function () {
+			this.getSplitAppObj().backDetail();
+		},
+
+		onPressMasterBack: function () {
+			this.getSplitAppObj().backMaster();
+		},
+
+		onPressGoToMaster: function () {
+			this.getSplitAppObj().toMaster(this.createId("master2"));
+		},
+
+		onListItemPress: function (oEvent) {
+			var sToPageId = oEvent.getParameter("listItem").getCustomData()[0].getValue();
+
+			this.getSplitAppObj().toDetail(this.createId(sToPageId));
+		},
+
+		onPressModeBtn: function (oEvent) {
+			var sSplitAppMode = oEvent.getSource().getSelectedButton().getCustomData()[0].getValue();
+
+			this.getSplitAppObj().setMode(sSplitAppMode);
+			MessageToast.show("Split Container mode is changed to: " + sSplitAppMode, { duration: 5000 });
+		},
+
+		getSplitAppObj: function () {
+			var result = this.byId("SplitAppDemo");
+			if (!result) {
+				Log.info("SplitApp object can't be found");
+			}
+			return result;
+		},
     });
 });
