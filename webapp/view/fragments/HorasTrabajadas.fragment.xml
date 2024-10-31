@@ -1,30 +1,22 @@
-<mvc:View
-    controllerName="zetpmhours.controller.Worklist"
-    xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"    
-    xmlns:core="sap.ui.core"
-    xmlns:semantic="sap.f.semantic"
-	xmlns:tnt="sap.tnt">
-
-
-   <semantic:SemanticPage
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+        xmlns:fb="sap.ui.comp.filterbar"
+        xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+        xmlns:semantic="sap.f.semantic"
+        >
+        <semantic:SemanticPage
         id="page1"
         headerPinnable="false" 
         toggleHeaderOnTitleClick="false">
 
-
     <semantic:titleHeading>
       <Title id="Title1"
-             text="Reporte de Talleres"
+             text="{i18n>worklistTitle}"
              level="H2"/>
-     </semantic:titleHeading>  
-
-     <semantic:titleCustomTextActions>
-	<Button
-	text="Toggle Collapse/Expand"
-	icon="sap-icon://menu2"
-	press=".onCollapseExpandPress" />
-      </semantic:titleCustomTextActions> 
+     </semantic:titleHeading>   
 
      <semantic:titleCustomTextActions>
             <Button id="IdBtnMostrar" icon="sap-icon://kpi-corporate-performance" 
@@ -35,22 +27,6 @@
       </semantic:titleCustomTextActions> 
 
       <semantic:headerContent>
-	  
-	  <HBox class="sapUiTinyMarginBottom">
-			<tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
-			<tnt:NavigationList>
-			<tnt:NavigationListItem text="Horas Trabajadas" icon="sap-icon://employee" select="onPressNavTotGroup1">
-				<tnt:NavigationListItem text="Ordenes PM" id="subItem1" key="subItem1" select="onPressNav1"/>
-				<tnt:NavigationListItem text="Tiempo Puesto Trabajo" id="subItem2" key="subItem2" select="onPressNav2" />
-				<tnt:NavigationListItem text="Tiempo Personal" id="subItem3" key="subItem3"  select="onPressNav3"/>
-			</tnt:NavigationListItem>
-			<tnt:NavigationListItem text="Servicios Nuevos Equipos" icon="sap-icon://building"/>
-			</tnt:NavigationList>
-			<tnt:fixedItem>
-			</tnt:fixedItem>
-			</tnt:SideNavigation>
-	  		</HBox>
-
          <VBox alignItems="Center"  id="WorklistBox1">
 
           <HBox alignItems="Center" id="WorklistBox4"> 
@@ -90,12 +66,9 @@
            </HBox>
           
          </VBox> 
-
        </semantic:headerContent> 
-	   
 
     <semantic:content>     
-	
      <IconTabBar
 				id="iconTabBar"
 				headerBackgroundDesign="Transparent"
@@ -104,15 +77,15 @@
 				select=""
 				selectedKey="">				
                 <items>
-                    <IconTabFilter id="OrderTab" text="Ordenes PM" key="key1"  visible="{=${ReportModel>/Vis1}}">
+                    <IconTabFilter id="OrderTab" text="Ordenes PM" key="key1">
 						<mvc:XMLView id="OrdenView1" viewName="zetpmhours.view.Orden"></mvc:XMLView>
 					</IconTabFilter>						
 
-                    <IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2"  visible="{=${ReportModel>/Vis2}}">
+                    <IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2">
 						<mvc:XMLView id="PuestoView1" viewName="zetpmhours.view.Puesto"></mvc:XMLView>
 					</IconTabFilter>	
 
-                    <IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3"  visible="{=${ReportModel>/Vis3}}">
+                    <IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3">
 						<mvc:XMLView id="PersonalView1" viewName="zetpmhours.view.Personal"></mvc:XMLView>
 					</IconTabFilter>                 					
                     						
@@ -123,5 +96,5 @@
        <semantic:SendEmailAction id="shareEmail1" press=".onShareEmailPress"/>
      </semantic:sendEmailAction> 
    </semantic:SemanticPage>     
-    
-</mvc:View>
+
+</core:FragmentDefinition>
