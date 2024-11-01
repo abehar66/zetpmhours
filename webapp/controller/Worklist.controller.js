@@ -41,11 +41,19 @@ sap.ui.define([
                     'OrderGrpSet': [],
                     'WorkcenterSet': [],
                     'PersonalSet': [],
+                    'AtmSet':[],
                     'Parameters' : {
                                     'Desde': new Date(),
                                     'Hasta': new Date(),
+                                    'FechaRango1' :new Date(),
+                                    'FechaRango2' :new Date(),
                                    },
-                    'Taller': []               
+                    'Taller': [],
+                    Vis1:false,
+                    Vis2:false,
+                    Vis3:false,            
+                    VisFilt1:false,
+                    VisFilt2:false
                 });
 
             this.setModel(this.reportModel, "ReportModel");
@@ -389,5 +397,60 @@ sap.ui.define([
 			}
 			return result;
 		},
+
+        onPressNav1:function(){
+            this.reportModel.setProperty('/Vis1',true);
+            this.reportModel.setProperty('/Vis2',false);
+            this.reportModel.setProperty('/Vis3',false);
+            this.reportModel.setProperty('/VisFilt1',true);
+            this.reportModel.setProperty('/VisFilt2',false);
+            
+        },
+        onPressNav2:function(){
+            this.reportModel.setProperty('/Vis1',false);
+            this.reportModel.setProperty('/Vis2',true);
+            this.reportModel.setProperty('/Vis3',false);
+            this.reportModel.setProperty('/VisFilt1',true);
+            this.reportModel.setProperty('/VisFilt2',false);
+        },
+        onPressNav3:function(){
+            this.reportModel.setProperty('/Vis1',false);
+            this.reportModel.setProperty('/Vis2',false);
+            this.reportModel.setProperty('/Vis3',true);
+            this.reportModel.setProperty('/VisFilt1',true);
+            this.reportModel.setProperty('/VisFilt2',false);
+        },
+        onPressNavTotGroup1:function(){
+            this.reportModel.setProperty('/Vis1',true);
+            this.reportModel.setProperty('/Vis2',true);
+            this.reportModel.setProperty('/Vis3',true);
+            this.reportModel.setProperty('/VisFilt1',true);
+            this.reportModel.setProperty('/VisFilt2',false);
+        },
+        onPressNavTotGroup2:function(){
+            this.reportModel.setProperty('/Vis1',false);
+            this.reportModel.setProperty('/Vis2',false);
+            this.reportModel.setProperty('/Vis3',false);
+            this.reportModel.setProperty('/VisFilt1',false);
+            this.reportModel.setProperty('/VisFilt2',true);
+        },
+        
+        onDisplay2: function (evt) {
+            const Fecha1 =  this.byId('FilterRangeFecha').getDateValue(); 
+            const Fecha2 = this.byId('FilterRangeFecha').getSecondDateValue(); 
+            const AtmTable = this.byId("AtmView1--tableAtm");
+
+
+    
+            oDataModel.getListOrden2(Fecha1,Fecha2)
+                .then(oData => {
+                    this.reportModel.setProperty('/AtmSet', oData.results);
+                    AtmTable.getBinding("items").getModel().setProperty("/AtmSet", oData.results);
+                    
+                })
+                .catch(e => {
+                   
+                })
+        },
     });
 });

@@ -5,75 +5,61 @@
     xmlns:core="sap.ui.core"
     xmlns:semantic="sap.f.semantic"
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	  
-	  >
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:l="sap.ui.layout"
+	xmlns:tnt="sap.tnt"
+	>
+	<l:ResponsiveSplitter defaultPane="default">
+		<l:PaneContainer>
+			<l:SplitPane requiredParentWidth="400" id="default" >
+				<Panel headerText="Listado de Reportes" height="100%" >
+					
 
- 	<SplitApp
-		id="SplitAppDemo"
-		initialDetail="detail"
-		initialMaster="master">
-		<detailPages>
-			<semantic:SemanticPage
+						<tnt:NavigationList>
+						<tnt:NavigationListItem text="Horas Trabajadas" icon="sap-icon://time-account" select="onPressNavTotGroup1">
+							<tnt:NavigationListItem text="Ordenes PM" id="subItem1" key="subItem1" select="onPressNav1"/>
+							<tnt:NavigationListItem text="Tiempo Puesto Trabajo"   id="subItem2" key="subItem2" select="onPressNav2" />
+							<tnt:NavigationListItem text="Tiempo Personal"   id="subItem3" key="subItem3"  select="onPressNav3"/>
+						</tnt:NavigationListItem>
+						<tnt:NavigationListItem text="Servicios Nuevos Equipos" icon="sap-icon://measurement-document" select="onPressNavTotGroup2"/>
+						</tnt:NavigationList>
+
+
+
+				</Panel>
+			</l:SplitPane>
+			<l:PaneContainer orientation="Vertical">
+				<l:SplitPane requiredParentWidth="600">
+					<Panel headerText="Report de Taller">
+						<semantic:SemanticPage
 				id="detail1"
 				title="{i18n>InitialTitle2}"
 				backgroundDesign= "Solid"
 				showNavButton="false"
 				navButtonPress=".onPressDetailBack">
 
-				<semantic:titleHeading>
-				<Title id="Title1"
-						text="{i18n>worklistTitle}"
-						level="H2"/>
-				</semantic:titleHeading>   
-
-				<semantic:titleCustomTextActions>
+				<!-- <semantic:titleCustomTextActions>
 						<Button id="IdBtnMostrar" icon="sap-icon://kpi-corporate-performance" 
 											tooltip="Mostrar Reportes" 
 											text="{i18n>buttonDisplay}" 
 											type="Accept"
 											press="onDisplay" visible="true" />                             
-				</semantic:titleCustomTextActions> 
+				</semantic:titleCustomTextActions>  -->
 
 				<semantic:headerContent>
-					<VBox alignItems="Center"  id="WorklistBox1">
 
-					<HBox alignItems="Center" id="WorklistBox4"> 
-					<Label text="Taller: " labelFor="IdTaller" visible="true" />
-					<ComboBox
-								required="true" 
-								id="IdTaller"                                    
-								width="200px"                                      
-								items="{
-										path: 'ReportModel>/Taller',
-										sorter: { path: 'Key' }
-									}"  >
-								<core:Item key="{ReportModel>Key}" text="{ReportModel>Value}" />                         
-						</ComboBox>  
-					</HBox>  
 
-					<HBox alignItems="Center" id="WorklistBox2">
-						<Label id="WorkListLabel" text="Desde: " labelFor="Desde" visible="true" />
-						<DatePicker	id="Desde"			                	
-										value="{path: 'ReportModel>/Parameters/Desde', type:'sap.ui.model.type.Date' ,
-												formatOptions: { style: 'medium', strictParsing: true}   }"  
-										displayFormat="medium"                                                     
-										valueFormat="dd-mm-yyyy"
-										change="handleChange"                            
-										visible="true" />                             
-					</HBox>                   
-					<HBox alignItems="Center" id="WorklistBox3">     
-					<Label text="Hasta: " labelFor="Hasta" visible="true"/>
-						<DatePicker	id="Hasta"
-										value="{path: 'ReportModel>/Parameters/Hasta', type:'sap.ui.model.type.Date' ,
-												formatOptions: { style: 'medium', strictParsing: true}   }"  
-										displayFormat="medium"                                                     
-										valueFormat="dd-mm-yyyy"
-										change="handleChange"
-										visible="true"/> 
-									
-					</HBox>
+					<VBox id="Filter1"  visible="{=${ReportModel>/VisFilt1}}">
+						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanel1" type="XML"/>
+					</VBox>
+
+					<VBox id="Filter2" visible="{=!${ReportModel>/Vis1} &amp;&amp; ${ReportModel>/VisFilt2} 
+								&amp;&amp; !${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt1} &amp;&amp; !${ReportModel>/Vis2}}">
+						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanel2" type="XML"/>
+					</VBox>
+				
+				
 					
-					</VBox> 
 				</semantic:headerContent> 
 
 				<semantic:content>     
@@ -85,49 +71,35 @@
 							select=""
 							selectedKey="">				
 							<items>
-								<IconTabFilter id="OrderTab" text="Ordenes PM" key="key1">
+								<IconTabFilter id="OrderTab" text="Ordenes PM" key="key1" visible="{=${ReportModel>/Vis1} &amp;&amp; !${ReportModel>/VisFilt2}}">
 									<mvc:XMLView id="OrdenView1" viewName="zetpmhours.view.Orden"></mvc:XMLView>
 								</IconTabFilter>						
 
-								<IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2">
+								<IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2" visible="{=${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt2}}">
 									<mvc:XMLView id="PuestoView1" viewName="zetpmhours.view.Puesto"></mvc:XMLView>
 								</IconTabFilter>	
 
-								<IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3">
+								<IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3" visible="{=${ReportModel>/Vis3} &amp;&amp; !${ReportModel>/VisFilt2}}">
 									<mvc:XMLView id="PersonalView1" viewName="zetpmhours.view.Personal"></mvc:XMLView>
-								</IconTabFilter>                 					
+								</IconTabFilter>
+
+								
+								<IconTabFilter id="AtmTab" text="Ordenes para Nuevos Equipos" key="key4" visible="{=!${ReportModel>/Vis1} &amp;&amp; ${ReportModel>/VisFilt2} 
+								&amp;&amp; !${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt1} &amp;&amp; !${ReportModel>/Vis2}}">
+									<mvc:XMLView id="AtmView1" viewName="zetpmhours.view.Atm"></mvc:XMLView>
+								</IconTabFilter>                   					
 														
 							</items>                
 						</IconTabBar> 
 			</semantic:content>     
-			<semantic:sendEmailAction>
+			<!-- <semantic:sendEmailAction>
 				<semantic:SendEmailAction id="shareEmail1" press=".onShareEmailPress"/>
-				</semantic:sendEmailAction> 
+				</semantic:sendEmailAction>  -->
 			</semantic:SemanticPage>     
-
-			<Page
-				id="detail2"
-				title="{i18n>InitialTitle1}"
-				backgroundDesign= "Solid"
-				showNavButton="false"
-				navButtonPress=".onPressDetailBack">
-			</Page>
-		</detailPages>
-		<masterPages>
-			<Page
-				id="master2"
-				title="{i18n>MasterTitle}"
-				backgroundDesign="List"
-				showNavButton="false"
-				navButtonPress=".onPressMasterBack">
-				<List itemPress=".onListItemPress">
-					<items>
-						<StandardListItem title="{i18n>InitialTitle2}" type="Active" custom:to="detail1" icon="sap-icon://customer-order-entry"/>
-						<StandardListItem title="{i18n>InitialTitle1}" type="Active" custom:to="detail2" icon="sap-icon://business-objects-experience"/>
-					</items>
-				</List>
-			</Page>
-		</masterPages>
-	</SplitApp>
+					</Panel>
+				</l:SplitPane>
+			</l:PaneContainer>
+		</l:PaneContainer>
+	</l:ResponsiveSplitter>
     
 </mvc:View>

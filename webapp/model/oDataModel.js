@@ -18,6 +18,7 @@ sap.ui.define([
         const orderEntity = '/OrderSet';
         const noticeEntity = '/NoticeSet';
         const WorkPerformedEntity = '/WorkPerformedSet';
+        const orderReportEntity = '/OrderReportSet'
 
         return {
             init:function(caller){
@@ -103,6 +104,55 @@ sap.ui.define([
                     });
                 }.bind(this))
 
+            },      
+            
+            getListOrden2:function(Fecha1,Fecha2){    
+
+
+                let Filters = [
+                    new Filter({
+                        path: 'TypeOrder',
+                        operator: FilterOperator.EQ,
+                        value1: "ZS02"
+                    }),
+                ];
+
+                if(Fecha1 !== null)
+                    {
+                        Filters.push(
+                            new Filter({
+                                path: 'Fecha',
+                                operator: FilterOperator.BT,
+                                value1: Fecha1,
+                                value2: Fecha2
+                            }),
+                        );
+                      
+                    }         
+
+
+                return new Promise(function (resolve, reject) {
+                    this.odataModel.read(orderReportEntity, {  
+                        filters: Filters,  
+                        success: oData => {
+                            resolve(oData)
+                        },
+                        error: e => {
+                            reject(e)
+                        }
+                    });
+                }.bind(this))
+
             },            
+
+            parseError: function (e) {
+                let errorMessage = "";
+                try {
+                    errorMessage = JSON.parse(e.responseText).error.message.value;
+                } catch (error) {
+                    errorMessage = e.responseText;
+                }
+                return errorMessage;
+            }, 
     };
 });
