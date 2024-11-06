@@ -6,6 +6,7 @@
         xmlns:fb="sap.ui.comp.filterbar"
         xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
         xmlns:semantic="sap.f.semantic"
+        xmlns:mvc="sap.ui.core.mvc"
         >
         <semantic:SemanticPage
         id="page1"
@@ -33,7 +34,7 @@
            <Label text="Taller: " labelFor="IdTaller" visible="true" />
            <ComboBox
                     required="true" 
-                    id="IdTaller"                                    
+                    id="IdTallerHoras"                                    
                     width="200px"                                      
                     items="{
                             path: 'ReportModel>/Taller',
@@ -45,7 +46,7 @@
 
          <HBox alignItems="Center" id="WorklistBox2">
             <Label id="WorkListLabel" text="Desde: " labelFor="Desde" visible="true" />
-            <DatePicker	id="Desde"			                	
+            <DatePicker	id="DesdeHoras"			                	
                             value="{path: 'ReportModel>/Parameters/Desde', type:'sap.ui.model.type.Date' ,
                                     formatOptions: { style: 'medium', strictParsing: true}   }"  
                             displayFormat="medium"                                                     
@@ -55,7 +56,7 @@
            </HBox>                   
           <HBox alignItems="Center" id="WorklistBox3">     
            <Label text="Hasta: " labelFor="Hasta" visible="true"/>
-            <DatePicker	id="Hasta"
+            <DatePicker	id="HastaHoras"
 			                value="{path: 'ReportModel>/Parameters/Hasta', type:'sap.ui.model.type.Date' ,
                                     formatOptions: { style: 'medium', strictParsing: true}   }"  
                             displayFormat="medium"                                                     
@@ -70,23 +71,23 @@
 
     <semantic:content>     
      <IconTabBar
-				id="iconTabBar"
+				id="iconTabBarHoras"
 				headerBackgroundDesign="Transparent"
 				class="sapUiResponsiveContentPadding"
 				binding="{ReportModel}"
 				select=""
 				selectedKey="">				
                 <items>
-                    <IconTabFilter id="OrderTab" text="Ordenes PM" key="key1">
-						<mvc:XMLView id="OrdenView1" viewName="zetpmhours.view.Orden"></mvc:XMLView>
+                    <IconTabFilter id="OrderTabHoras" text="Ordenes PM" key="key1">
+						<mvc:XMLView id="OrdenView1Horas" viewName="zetpmhours.view.Orden"></mvc:XMLView>
 					</IconTabFilter>						
 
-                    <IconTabFilter id="PuestoTab" text="Tiempo Puesto Trabajo" key="key2">
-						<mvc:XMLView id="PuestoView1" viewName="zetpmhours.view.Puesto"></mvc:XMLView>
+                    <IconTabFilter id="PuestoTabHoras" text="Tiempo Puesto Trabajo" key="key2">
+						<mvc:XMLView id="PuestoView1Horas" viewName="zetpmhours.view.Puesto"></mvc:XMLView>
 					</IconTabFilter>	
 
-                    <IconTabFilter id="PersonalTab" text="Tiempo Personal" key="key3">
-						<mvc:XMLView id="PersonalView1" viewName="zetpmhours.view.Personal"></mvc:XMLView>
+                    <IconTabFilter id="PersonalTabHoras" text="Tiempo Personal" key="key3">
+						<mvc:XMLView id="PersonalView1Horas" viewName="zetpmhours.view.Personal"></mvc:XMLView>
 					</IconTabFilter>                 					
                     						
                 </items>                

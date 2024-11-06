@@ -8,7 +8,7 @@
   xmlns:m="sap.m" 
   xmlns:l="sap.ui.layout" >  
   <f:SimpleForm		
-		id="PersonalForm"
+		id="AtmForm"
 		columnsL="3"
 		columnsM="3"
 		editable="true"
@@ -33,10 +33,10 @@
                 <headerToolbar>
                     <OverflowToolbar  >
                         <Title
-                            id="tableHeaderPersonal"
+                            id="tableHeaderAtm"
                             text="{worklistView>/worklistTableTitle}"
                             level="H3"/>
-                        <ToolbarSpacer id="headerSpaceOrden"/>
+                        <ToolbarSpacer id="headerSpaceOrdenAtm"/>
                         
                         
                          
