@@ -9,7 +9,11 @@
 				    <Panel id="myFiltersPanel" headerText="Horas Trabajadas">
 
 						<smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey"
-										considerSelectionVariants="true" entitySet="Items" enableBasicSearch="false" search="onDisplay">
+										considerSelectionVariants="true" 
+										entitySet="Items" 
+										enableBasicSearch="false" 
+										search="onDisplay"
+										initialized="onInitSmartFilterbarPanel1" >
 							<smartFilterBar:controlConfiguration>
 								
 

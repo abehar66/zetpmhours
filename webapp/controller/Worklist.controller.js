@@ -435,12 +435,10 @@ sap.ui.define([
             this.reportModel.setProperty('/VisFilt2',true);
         },
         
-        onDisplay2: function (evt) {
+        onDisplayNuevosEquipos: function (evt) {
             const Fecha1 =  this.byId('FilterRangeFecha').getDateValue(); 
             const Fecha2 = this.byId('FilterRangeFecha').getSecondDateValue(); 
             const AtmTable = this.byId("AtmView1--tableAtm");
-
-
     
             oDataModel.getListOrden2(Fecha1,Fecha2)
                 .then(oData => {
@@ -452,5 +450,22 @@ sap.ui.define([
                    
                 })
         },
+
+        onInitSmartFilterbarPanel2: function( evt ) {
+            var i18nModel = this.getOwnerComponent().getModel("i18n");
+            this.oBundle = i18nModel.getResourceBundle();
+            var txt = this.oBundle.getText("buttonDisplay");
+            var goBtn = evt.getSource()._oSearchButton;            
+            goBtn.setText(txt);
+        },    
+
+        onInitSmartFilterbarPanel1: function( evt ) {
+            var i18nModel = this.getOwnerComponent().getModel("i18n");
+            this.oBundle = i18nModel.getResourceBundle();
+            var txt = this.oBundle.getText("buttonDisplay");
+            var goBtn = evt.getSource()._oSearchButton;            
+            goBtn.setText(txt);
+        },   
+
     });
 });

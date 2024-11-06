@@ -20,8 +20,8 @@
                 items="{
                     path: 'ReportModel>/AtmSet',
                     sorter: {
-                        path: 'Mblnr',
-                        descending: false
+                        path: 'Fecha',
+                        descending: true
                     }
                 }"
                 noDataText="{worklistView>/tableNoDataText}"

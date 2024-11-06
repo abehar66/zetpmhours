@@ -9,12 +9,11 @@
 				    <Panel id="myFiltersPanel2" headerText="Servicios Nuevos Equipos">
 
 						<smartFilterBar:SmartFilterBar id="smartFilterBar2" persistencyKey="UniqueAndStablePersistencyKey"
-										considerSelectionVariants="true" entitySet="Items" enableBasicSearch="false" search="onDisplay2">
-							<smartFilterBar:controlConfiguration>
-								
-
-								
-
+									considerSelectionVariants="true" 
+									entitySet="Items" 
+									enableBasicSearch="false" search="onDisplayNuevosEquipos"
+									initialized="onInitSmartFilterbarPanel2" >
+							<smartFilterBar:controlConfiguration>		
 								
 								<smartFilterBar:ControlConfiguration key="RangoFecha" index="1" label="Fecha"
 																	groupId="_BASIC" width="500px" visibleInAdvancedArea="true">
@@ -25,8 +24,8 @@
                                         showFooter="true"
                                         change="handleChange"/>                         
 
-									</smartFilterBar:customControl>
-								</smartFilterBar:ControlConfiguration>
+									</smartFilterBar:customControl>										
+								</smartFilterBar:ControlConfiguration>							
 
 								<smartFilterBar:ControlConfiguration key="Validated" filterType="single"/>
 								<smartFilterBar:ControlConfiguration
