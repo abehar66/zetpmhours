@@ -456,7 +456,7 @@ sap.ui.define([
             this.oBundle = i18nModel.getResourceBundle();
             var txt = this.oBundle.getText("buttonDisplay");
             var goBtn = evt.getSource()._oSearchButton;            
-            goBtn.setText(txt);
+            goBtn.setText(txt); 
         },    
 
         onInitSmartFilterbarPanel1: function( evt ) {
