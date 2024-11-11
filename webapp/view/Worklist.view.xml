@@ -30,7 +30,7 @@
 			</l:SplitPane>
 			<l:PaneContainer orientation="Vertical">
 				<l:SplitPane requiredParentWidth="600">
-					<Panel headerText="Report de Taller">
+					<Panel headerText="Reportes de Taller">
 						<semantic:SemanticPage
 				id="detail1"
 				title="{i18n>InitialTitle2}"
@@ -48,7 +48,6 @@
 
 				<semantic:headerContent>
 
-
 					<VBox id="Filter1"  visible="{=${ReportModel>/VisFilt1}}">
 						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanel1" type="XML"/>
 					</VBox>
@@ -56,10 +55,8 @@
 					<VBox id="Filter2" visible="{=!${ReportModel>/Vis1} &amp;&amp; ${ReportModel>/VisFilt2} 
 								&amp;&amp; !${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt1} &amp;&amp; !${ReportModel>/Vis2}}">
 						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanel2" type="XML"/>
-					</VBox>
-				
-				
-					
+					</VBox>		
+									
 				</semantic:headerContent> 
 
 				<semantic:content>     
