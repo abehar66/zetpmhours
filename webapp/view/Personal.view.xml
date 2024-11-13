@@ -58,16 +58,16 @@
                         <Text text="{i18n>tableColumnWorkcenterTitle}" id="Personalcol1"/>
                     </Column>                      
                     <Column id="PersonalColumn2">
-                        <Text text="{i18n>tableColumnPersonalTitle}" id="Personalcol2" width="35%"/>
+                        <Text text="{i18n>tableColumnPersonalTitle}" id="Personalcol2" />
                     </Column>                      
                     <Column id="PersonalNameColumn5">
-                        <Text text="{i18n>tableColumnPersonalNameTitle}" id="Personalcol5" width="40%"/>
+                        <Text text="{i18n>tableColumnPersonalNameTitle}" id="Personalcol5" />
                     </Column>                      
                     <Column id="PersonalColumn3" vAlign="Middle" hAlign="Center">
-                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Personalcol3" width="50%"/>
+                        <Text text="{i18n>tableColumnTimeAgreededAverageTitle}" id="Personalcol3" />
                     </Column>                                        
                     <Column id="PersonalColumn4" vAlign="Middle" hAlign="Center">
-                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="Personalcol4" width="50%"/>
+                        <Text text="{i18n>tableColumnTimeAverageTitle}" id="Personalcol4" />
                     </Column>                    
                 </columns>
 
