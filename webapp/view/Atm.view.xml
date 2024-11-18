@@ -59,7 +59,9 @@
                     <Column>
                         <Text text="Fecha de la Orden" />
                     </Column>      
-                         
+                     <Column vAlign="Middle" hAlign="Center">
+                        <Text text="Cantidad" />
+                    </Column>                          
                 </columns>
 
                 <items>
@@ -76,6 +78,7 @@
                                         UTC:true
                                         }
                                     }"  />
+                        <Text text="{ReportModel>Cant}"/>            
                     </ColumnListItem>
                 </items>
             </Table>
