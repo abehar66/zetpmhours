@@ -19,6 +19,7 @@ sap.ui.define([
         const noticeEntity = '/NoticeSet';
         const WorkPerformedEntity = '/WorkPerformedSet';
         const orderReportEntity = '/OrderReportSet'
+        const EstadiaEntity = '/EstadiaSet'
 
         return {
             init:function(caller){
@@ -154,5 +155,39 @@ sap.ui.define([
                 }
                 return errorMessage;
             }, 
+
+            
+            getListEstadia:function(Idtaller,desde,hasta){                                     
+                let Filters = [                     
+                    new Filter({
+                        path: 'IdTaller',
+                        operator: FilterOperator.EQ,
+                        value1: Idtaller
+                    }),                     
+                    new Filter({
+                        path: 'EstadiaFrom',
+                        operator: FilterOperator.EQ,
+                        value1: desde
+                    }),
+                    new Filter({
+                        path: 'EstadiaTo',
+                        operator: FilterOperator.EQ,
+                        value1: hasta
+                    })                    
+                ];                
+                
+                return new Promise(function (resolve, reject) {
+                    this.odataModel.read(EstadiaEntity, {  
+                        filters: Filters,  
+                        success: oData => {
+                            resolve(oData)
+                        },
+                        error: e => {
+                            reject(e)
+                        }
+                    });
+                }.bind(this))
+
+            },   
     };
 });

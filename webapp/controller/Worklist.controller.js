@@ -198,6 +198,37 @@ sap.ui.define([
         },
 
         onDisplayEstadia: function (evt) {
+            const desde = this.reportModel.getProperty('/Parameters/Desde');
+            const hasta = this.reportModel.getProperty('/Parameters/Hasta');
+            const taller = this.getView().byId('IdTaller1').getSelectedKey();
+            let tableEstadia = this.byId("EstadiaView1--tableEstadia");
+
+            var dateFormat = sap.ui.core.format.DateFormat.getInstance({ UTC: true, pattern: "yyyyMMdd" });
+            var ini = dateFormat.format(desde);
+            var fin = dateFormat.format(hasta);            
+
+            tableEstadia.setBusy(true);
+            oDataModel.getListEstadia(taller,ini,fin)
+            .then(oData => {
+                this.reportModel.setProperty('/EstadiaSet', oData.results);
+                let datos = oData.results;
+
+                datos.forEach(itm => {
+                    if (itm.TipoEquipo === '*') {
+                        itm.TipoEquipo = 'TOTAL';
+                    }
+
+                    itm.EstadiaPorciento = itm.EstadiaPorciento + ' %';                                            
+                });
+
+                tableEstadia.getBinding("items").getModel().setProperty("/EstadiaSet", datos);       
+
+                tableEstadia.setBusy(false);
+            })
+            .catch(e => {
+                tableEstadia.setBusy(false);
+            })
+
         },    
 
         fillWorkcenterSet: function (tabla) {

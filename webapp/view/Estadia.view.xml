@@ -21,7 +21,7 @@
                     path: 'ReportModel>/EstadiaSet',
                     sorter: {
                         path: 'TipoEquipo',
-                        descending: true
+                        descending: false
                     }
                 }"
                 noDataText="{worklistView>/tableNoDataText}"
@@ -42,7 +42,7 @@
 
                 <columns>
                     <Column>
-                        <Text text="Tecnologia" />
+                        <Text text="Tipo Equipo" />
                     </Column>  
                     <Column>
                         <Text text="Cantidad Ordenes" />
