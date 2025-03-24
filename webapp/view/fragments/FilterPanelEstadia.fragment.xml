@@ -1,0 +1,86 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+        xmlns:fb="sap.ui.comp.filterbar"
+        xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+        >
+				    <Panel id="myFiltersPanelEstadia" headerText="Estadia Taller">
+
+						<smartFilterBar:SmartFilterBar id="smartFilterBar1" persistencyKey="UniqueAndStablePersistencyKey"
+										considerSelectionVariants="true" 
+										entitySet="Items" 
+										enableBasicSearch="false" 
+										search="onDisplayEstadia"
+										initialized="onInitSmartFilterBarPanelEstadia">
+							<smartFilterBar:controlConfiguration>
+								
+
+								<smartFilterBar:ControlConfiguration key="IdTaller" index="1" label="Taller"
+																	groupId="_BASIC" width="500px" visibleInAdvancedArea="true">
+									<smartFilterBar:customControl>
+										<ComboBox
+											required="true" 
+											id="IdTaller1"                                    
+											width="200px"                                      
+											items="{
+													path: 'ReportModel>/Taller',
+													sorter: { path: 'Key' }
+												}"  >
+											<core:Item key="{ReportModel>Key}" text="{ReportModel>Value}" />                         
+									</ComboBox>  
+
+									</smartFilterBar:customControl>
+								</smartFilterBar:ControlConfiguration>
+
+								
+								<smartFilterBar:ControlConfiguration key="Desde" index="2" label="Desde"
+																	groupId="_BASIC" width="500px" visibleInAdvancedArea="true">
+									<smartFilterBar:customControl>
+										<DatePicker	id="Desde1"			                	
+										value="{path: 'ReportModel>/Parameters/Desde', type:'sap.ui.model.type.Date' ,
+												formatOptions: { style: 'medium', strictParsing: true}   }"  
+										displayFormat="medium"                                                     
+										valueFormat="dd-mm-yyyy"
+										change="handleChange"                            
+										visible="true" />                          
+
+									</smartFilterBar:customControl>
+								</smartFilterBar:ControlConfiguration>
+
+								<smartFilterBar:ControlConfiguration key="Hasta" index="3" label="Hasta"
+																	groupId="_BASIC" width="500px" visibleInAdvancedArea="true">
+									<smartFilterBar:customControl>
+											<DatePicker	id="Hasta1"
+										value="{path: 'ReportModel>/Parameters/Hasta', type:'sap.ui.model.type.Date' ,
+												formatOptions: { style: 'medium', strictParsing: true}   }"  
+										displayFormat="medium"                                                     
+										valueFormat="dd-mm-yyyy"
+										change="handleChange"
+										visible="true"/>                        
+
+									</smartFilterBar:customControl>
+								</smartFilterBar:ControlConfiguration>
+
+								<smartFilterBar:ControlConfiguration key="Validated" filterType="single"/>
+								<smartFilterBar:ControlConfiguration
+									key="Quantity" groupId="_BASIC" index="-1"
+									visibleInAdvancedArea="true" filterType="interval" />
+								<smartFilterBar:ControlConfiguration
+									key="NUMC" groupId="_BASIC" index="2"
+									visibleInAdvancedArea="true"
+									filterType="auto" hasValueHelpDialog="true" />
+								<smartFilterBar:ControlConfiguration
+									key="DateTimeOffset" groupId="_BASIC" index="0"
+									visibleInAdvancedArea="true"
+									filterType="multiple" />
+							</smartFilterBar:controlConfiguration>
+							<!-- layout data used to make the table growing but the filter bar fixed -->
+							<smartFilterBar:layoutData>
+								<FlexItemData  shrinkFactor="0"/>
+							</smartFilterBar:layoutData>
+						</smartFilterBar:SmartFilterBar>
+							
+					</Panel>
+</core:FragmentDefinition>

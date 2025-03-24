@@ -1,0 +1,73 @@
+<mvc:View 
+  id="EstadiaView"  
+  controllerName="zetpmhours.controller.Worklist"  
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core" 
+  xmlns:m="sap.m" 
+  xmlns:l="sap.ui.layout" >  
+  <f:SimpleForm		
+		id="EstadiaForm"
+		columnsL="3"
+		columnsM="3"
+		editable="true"
+		layout="ResponsiveGridLayout">		
+		<f:content>	
+             <Table
+                id="tableEstadia"
+                width="auto"
+                items="{
+                    path: 'ReportModel>/EstadiaSet',
+                    sorter: {
+                        path: 'TipoEquipo',
+                        descending: true
+                    }
+                }"
+                noDataText="{worklistView>/tableNoDataText}"
+                busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                updateFinished=".onUpdateFinished">
+
+                <headerToolbar>
+                    <OverflowToolbar  >
+                        <Title
+                            id="tableEstadiaTitle"
+                            text="{worklistView>/worklistEstadiaTableTitle}"
+                            level="H3"/>
+                        <ToolbarSpacer id="headerSpaceEstadia"/>                                                                      
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column>
+                        <Text text="Tecnologia" />
+                    </Column>  
+                    <Column>
+                        <Text text="Cantidad Ordenes" />
+                    </Column>  
+                    <Column>
+                        <Text text="Estadia Plan Promedio" />
+                    </Column>  
+                    <Column>
+                        <Text text="Estadia Real Promedio" />
+                    </Column>      
+                    <Column >
+                        <Text text="Estadia Porcentual" />
+                    </Column>                                                                         
+                </columns>
+
+                <items>
+                    <ColumnListItem>                                              
+                        <Text text="{ReportModel>TipoEquipo}"/>
+                        <Text text="{ReportModel>Cantidad}"/>                        
+                        <Text text="{ReportModel>EstadiaPlanAvg}"/>
+                        <Text text="{ReportModel>EstadiaRealAvg}"/>
+                        <Text text="{ReportModel>EstadiaPorciento}"/>                        
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:SimpleForm>	
+</mvc:View> 

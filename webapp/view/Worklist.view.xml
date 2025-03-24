@@ -22,6 +22,7 @@
 							<tnt:NavigationListItem text="Tiempo Personal"   id="subItem3" key="subItem3"  select="onPressNav3"/>
 						</tnt:NavigationListItem>
 						<tnt:NavigationListItem text="Servicios Nuevos Equipos" icon="sap-icon://measurement-document" select="onPressNavTotGroup2"/>
+						<tnt:NavigationListItem text="Estadia Taller" icon="sap-icon://measurement-document" select="onPressNavToEstadia"/>
 						</tnt:NavigationList>
 
 
@@ -56,6 +57,10 @@
 								&amp;&amp; !${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt1} &amp;&amp; !${ReportModel>/Vis2}}">
 						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanel2" type="XML"/>
 					</VBox>		
+
+					<VBox id="FilterEstadia" visible="{=${ReportModel>/VisEstadia}}">
+						<core:Fragment fragmentName="zetpmhours.view.fragments.FilterPanelEstadia" type="XML"/>
+					</VBox>	
 									
 				</semantic:headerContent> 
 
@@ -84,7 +89,14 @@
 								<IconTabFilter id="AtmTab" text="Ordenes para Nuevos Equipos" key="key4" visible="{=!${ReportModel>/Vis1} &amp;&amp; ${ReportModel>/VisFilt2} 
 								&amp;&amp; !${ReportModel>/Vis2} &amp;&amp; !${ReportModel>/VisFilt1} &amp;&amp; !${ReportModel>/Vis2}}">
 									<mvc:XMLView id="AtmView1" viewName="zetpmhours.view.Atm"></mvc:XMLView>
-								</IconTabFilter>                   					
+								</IconTabFilter> 	
+
+
+								<IconTabFilter id="EstadiaTab" text="Estadia" key="key5" visible="{=${ReportModel>/VisEstadia}}">
+									<mvc:XMLView id="EstadiaView1" viewName="zetpmhours.view.Estadia"></mvc:XMLView>
+								</IconTabFilter> 
+
+								
 														
 							</items>                
 						</IconTabBar> 

@@ -37,6 +37,7 @@ sap.ui.define([
             this.setModel(oViewModel, "worklistView");
             this.reportModel = new JSONModel(
                 {
+                    'EstadiaSet':[],
                     'WorkPerformedSet': [],
                     'OrderGrpSet': [],
                     'WorkcenterSet': [],
@@ -53,7 +54,8 @@ sap.ui.define([
                     Vis2:false,
                     Vis3:false,            
                     VisFilt1:false,
-                    VisFilt2:false
+                    VisFilt2:false,
+                    VisEstadia:false,
                 });
 
             this.setModel(this.reportModel, "ReportModel");
@@ -194,6 +196,9 @@ sap.ui.define([
                     tableOrder.setBusy(false);
                 })
         },
+
+        onDisplayEstadia: function (evt) {
+        },    
 
         fillWorkcenterSet: function (tabla) {
             const WorkcenterTable = this.byId("PuestoView1--tablePuesto");
@@ -404,6 +409,7 @@ sap.ui.define([
             this.reportModel.setProperty('/Vis3',false);
             this.reportModel.setProperty('/VisFilt1',true);
             this.reportModel.setProperty('/VisFilt2',false);
+            this.reportModel.setProperty('/VisEstadia',false);
             
         },
         onPressNav2:function(){
@@ -412,6 +418,7 @@ sap.ui.define([
             this.reportModel.setProperty('/Vis3',false);
             this.reportModel.setProperty('/VisFilt1',true);
             this.reportModel.setProperty('/VisFilt2',false);
+            this.reportModel.setProperty('/VisEstadia',false);
         },
         onPressNav3:function(){
             this.reportModel.setProperty('/Vis1',false);
@@ -419,6 +426,7 @@ sap.ui.define([
             this.reportModel.setProperty('/Vis3',true);
             this.reportModel.setProperty('/VisFilt1',true);
             this.reportModel.setProperty('/VisFilt2',false);
+            this.reportModel.setProperty('/VisEstadia',false);
         },
         onPressNavTotGroup1:function(){
             this.reportModel.setProperty('/Vis1',true);
@@ -426,6 +434,7 @@ sap.ui.define([
             this.reportModel.setProperty('/Vis3',true);
             this.reportModel.setProperty('/VisFilt1',true);
             this.reportModel.setProperty('/VisFilt2',false);
+            this.reportModel.setProperty('/VisEstadia',false);
         },
         onPressNavTotGroup2:function(){
             this.reportModel.setProperty('/Vis1',false);
@@ -433,6 +442,16 @@ sap.ui.define([
             this.reportModel.setProperty('/Vis3',false);
             this.reportModel.setProperty('/VisFilt1',false);
             this.reportModel.setProperty('/VisFilt2',true);
+            this.reportModel.setProperty('/VisEstadia',false);
+        },
+
+        onPressNavToEstadia:function(){
+            this.reportModel.setProperty('/Vis1',false);
+            this.reportModel.setProperty('/Vis2',false);
+            this.reportModel.setProperty('/Vis3',false);
+            this.reportModel.setProperty('/VisFilt1',false);
+            this.reportModel.setProperty('/VisFilt2',false);
+            this.reportModel.setProperty('/VisEstadia',true);
         },
         
         onDisplayNuevosEquipos: function (evt) {
@@ -460,6 +479,14 @@ sap.ui.define([
         },    
 
         onInitSmartFilterbarPanel1: function( evt ) {
+            var i18nModel = this.getOwnerComponent().getModel("i18n");
+            this.oBundle = i18nModel.getResourceBundle();
+            var txt = this.oBundle.getText("buttonDisplay");
+            var goBtn = evt.getSource()._oSearchButton;            
+            goBtn.setText(txt);
+        },   
+
+        onInitSmartFilterBarPanelEstadia: function( evt ) {
             var i18nModel = this.getOwnerComponent().getModel("i18n");
             this.oBundle = i18nModel.getResourceBundle();
             var txt = this.oBundle.getText("buttonDisplay");
