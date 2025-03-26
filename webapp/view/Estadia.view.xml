@@ -21,7 +21,7 @@
                     path: 'ReportModel>/EstadiaSet',
                     sorter: {
                         path: 'TipoEquipo',
-                        descending: false
+                        descending: true
                     }
                 }"
                 noDataText="{worklistView>/tableNoDataText}"
@@ -44,17 +44,17 @@
                     <Column>
                         <Text text="Tipo Equipo" />
                     </Column>  
-                    <Column>
+                    <Column  vAlign="Middle" hAlign="Center">
                         <Text text="Cantidad Ordenes" />
                     </Column>  
-                    <Column>
+                    <Column  vAlign="Middle" hAlign="Center">
                         <Text text="Estadia Plan Promedio" />
                     </Column>  
-                    <Column>
+                    <Column  vAlign="Middle" hAlign="Center">
                         <Text text="Estadia Real Promedio" />
                     </Column>      
-                    <Column >
-                        <Text text="Estadia Porcentual" />
+                    <Column  vAlign="Middle" hAlign="Center">
+                        <Text text="Estadia Porcentual"  />
                     </Column>                                                                         
                 </columns>
 

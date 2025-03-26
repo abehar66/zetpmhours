@@ -20,6 +20,6 @@ builder:
           name: ZETPMHOURS
           description: Reporte Talleres
           package: ZPM_FIORI
-          transport: FIPK900322
+          transport: FIPK900386
         exclude:
           - /test/

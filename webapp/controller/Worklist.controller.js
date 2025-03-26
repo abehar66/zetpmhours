@@ -215,7 +215,7 @@ sap.ui.define([
 
                 datos.forEach(itm => {
                     if (itm.TipoEquipo === '*') {
-                        itm.TipoEquipo = 'TOTAL';
+                        itm.TipoEquipo = '';
                     }
 
                     itm.EstadiaPorciento = itm.EstadiaPorciento + ' %';                                            
