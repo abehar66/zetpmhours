@@ -7,13 +7,14 @@
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:l="sap.ui.layout"
-	xmlns:tnt="sap.tnt"
+	xmlns:tnt="sap.tnt"	
+	height="100%"
 	>
-	<l:ResponsiveSplitter defaultPane="default">
+	<l:ResponsiveSplitter defaultPane="default" width='100%'>
 		<l:PaneContainer>
 			<l:SplitPane requiredParentWidth="400" id="default" >
-				<Panel headerText="Listado de Reportes" height="100%" >
-					
+				<Panel headerText="Listado de Reportes" height="100%"  >
+					<layoutData><l:SplitterLayoutData size="20%" /></layoutData>
 
 						<tnt:NavigationList>
 						<tnt:NavigationListItem text="Horas Trabajadas" icon="sap-icon://time-account" select="onPressNavTotGroup1">
@@ -29,15 +30,15 @@
 
 				</Panel>
 			</l:SplitPane>
-			<l:PaneContainer orientation="Vertical">
-				<l:SplitPane requiredParentWidth="600">
-					<Panel headerText="Reportes de Taller">
+			<l:PaneContainer orientation="Vertical" >
+				<l:SplitPane requiredParentWidth="800">
+					<Panel headerText="Reportes de Taller" >
 						<semantic:SemanticPage
 				id="detail1"
 				title="{i18n>InitialTitle2}"
 				backgroundDesign= "Solid"
 				showNavButton="false"
-				navButtonPress=".onPressDetailBack">
+				navButtonPress=".onPressDetailBack" >
 
 				<!-- <semantic:titleCustomTextActions>
 						<Button id="IdBtnMostrar" icon="sap-icon://kpi-corporate-performance" 
